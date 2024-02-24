@@ -3,7 +3,7 @@ from flaskblog import app, db
 from flaskblog.forms import RegistrationForm, LoginForm
 from flaskblog.models import User, Post
 from flaskblog import bcrypt
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 
@@ -68,3 +68,11 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+'''
+muliple decrators, the order in which they are applied is important. applied from innermost to outermost.
+'''
+@app.route('/account')
+@login_required
+def account():
+    return render_template('account.html', title='Account')
