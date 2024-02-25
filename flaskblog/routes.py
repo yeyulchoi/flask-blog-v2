@@ -71,9 +71,9 @@ def logout():
     return redirect(url_for('home'))
 
 '''
-muliple decrators, the order in which they are applied is important. applied from innermost to outermost.
+multiple decorators, the order in which they are applied is important. applied from innermost to outermost.
 '''
-@app.route('/account', methods=['GET', 'POST'])
+@app.route('/account', methods=['GET','POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
