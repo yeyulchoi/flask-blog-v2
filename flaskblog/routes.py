@@ -14,7 +14,8 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route("/")
 @app.route("/home")
 def home():
-    posts=Post.query.all()
+    page = request.args.get('page',1, type= int)
+    posts=Post.query.paginate(page=page,per_page = 5)  #this posts is the object of the each page with three items. The items is the property of posts object
     return render_template('home.html', posts=posts)
 
 
